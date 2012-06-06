@@ -43,7 +43,7 @@ def main(argv=None):
                     , abspath( join(options.chipmunk_includes, "chipmunk_unsafe.h") )
                     , abspath( join(options.chipmunk_includes, "chipmunk_ffi.h") )
                     , "-c" 
-                    #, "-D", "CHIPMUNK_FFI"
+                    , "-D", "CHIPMUNK_FFI"
                     , "-o", "chipmunk.xml"]
 
     h2xml.main(h2xml_args)
