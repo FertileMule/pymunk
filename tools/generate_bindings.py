@@ -76,12 +76,12 @@ if sizeof(c_void_p) == 4: uintptr_t = c_uint
 else: uintptr_t = c_ulonglong
 """    
     
+    bad_symbols =  ["free","calloc","realloc"]
+    
+    
     chipmunkpy = open(options.output, 'r').read()
 
-    
-    
-    
-    
+        
     
     # change head, remove cpVect, and replace _libraries index with chipmunk_lib
     # also change to use the platform specific function pointer
@@ -95,6 +95,7 @@ else: uintptr_t = c_ulonglong
     py3k_long = re.compile(r"4294967295L", re.DOTALL)
     py3k_long2 = re.compile(r"0L", re.DOTALL)
     uintptr_size = re.compile(r"uintptr_t = c_uint", re.DOTALL)
+    symbol_match  = re.compile( "^(?P<n>" + "|".join(bad_symbols)  + ").*",re.MULTILINE)
     #all_layers = re.compile(r"3344921057L", re.DOTALL)
     
     chipmunkpy = head_match.sub(custom_head, chipmunkpy)
@@ -108,6 +109,7 @@ else: uintptr_t = c_ulonglong
     chipmunkpy = py3k_long2.sub("0", chipmunkpy)
     #chipmunkpy = all_layers.sub("-1", chipmunkpy)
     chipmunkpy = uintptr_size.sub(custom_uintptr_size, chipmunkpy)
+    chipmunkpy = symbol_match.sub(r"\g<n> = None # symbol removed", chipmunkpy)
     
     f = open(options.output, 'w').write(chipmunkpy)
     print("replacement done")

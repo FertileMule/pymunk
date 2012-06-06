@@ -13,38 +13,38 @@ function_pointer = platform_specific_functions()['function_pointer']
 STRING = c_char_p
 
 
-# def cpAssertSoft(condition,...): return if(!(condition)) cpMessage(#condition, __FILE__, __LINE__, 1, 0, __VA_ARGS__) # macro
+# cpfcos = cos # alias
+cpArbiterStateIgnore = 2
+size_t = c_uint
+realloc = None # symbol removed
+realloc = None # symbol removed
+realloc = None # symbol removed
+cprealloc = realloc # alias
+calloc = None # symbol removed
+calloc = None # symbol removed
+calloc = None # symbol removed
+cpcalloc = calloc # alias
+# cpfatan2 = atan2 # alias
+# cpfsqrt = sqrt # alias
+cpArbiterStateFirstColl = 0
+# cpfacos = acos # alias
+# def cpAssertWarn(condition,...): return if(!(condition)) cpMessage(#condition, __FILE__, __LINE__, 0, 0, __VA_ARGS__) # macro
+cpArbiterStateCached = 3
 # cpfpow = pow # alias
+# def cpAssertHard(condition,...): return if(!(condition)) cpMessage(#condition, __FILE__, __LINE__, 1, 1, __VA_ARGS__) # macro
+def cpBodyAssertSane(body): return cpBodySanityCheck(body) # macro
+# def cpAssertSoft(condition,...): return if(!(condition)) cpMessage(#condition, __FILE__, __LINE__, 1, 0, __VA_ARGS__) # macro
+# cpfsin = sin # alias
+# cpffloor = floor # alias
+free = None # symbol removed
+free = None # symbol removed
+free = None # symbol removed
+cpfree = free # alias
 # def cpConstraintCheckCast(constraint,struct): return cpAssertHard(constraint->CP_PRIVATE(klass) == struct ##GetClass(), "Constraint is not a "#struct) # macro
 cpArbiterStateNormal = 1
-cpArbiterStateCached = 3
-size_t = c_uint
-realloc = chipmunk_lib.realloc
-realloc.restype = c_void_p
-realloc.argtypes = [c_void_p, size_t]
-cprealloc = realloc # alias
-# cpffloor = floor # alias
-# def cpAssertHard(condition,...): return if(!(condition)) cpMessage(#condition, __FILE__, __LINE__, 1, 1, __VA_ARGS__) # macro
-# def cpAssertWarn(condition,...): return if(!(condition)) cpMessage(#condition, __FILE__, __LINE__, 0, 0, __VA_ARGS__) # macro
-# cpfacos = acos # alias
-calloc = chipmunk_lib.calloc
-calloc.restype = c_void_p
-calloc.argtypes = [size_t, size_t]
-cpcalloc = calloc # alias
-free = chipmunk_lib.free
-free.restype = None
-free.argtypes = [c_void_p]
-cpfree = free # alias
 # cpfexp = exp # alias
-# cpfsqrt = sqrt # alias
-cpArbiterStateIgnore = 2
-cpArbiterStateFirstColl = 0
-# cpfatan2 = atan2 # alias
 # cpfceil = ceil # alias
-# cpfsin = sin # alias
-# cpfcos = cos # alias
 # cpfmod = fmod # alias
-def cpBodyAssertSane(body): return cpBodySanityCheck(body) # macro
 cpMessage = chipmunk_lib.cpMessage
 cpMessage.restype = None
 cpMessage.argtypes = [STRING, STRING, c_int, c_int, c_int, STRING]
