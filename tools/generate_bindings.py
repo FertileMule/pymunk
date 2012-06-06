@@ -1,6 +1,9 @@
 import sys, re
 from os.path import abspath, join
 from optparse import OptionParser
+
+#sys.path.insert(0,'/home/viblo/code/ctypeslib')
+
 from ctypeslib import h2xml
 from ctypeslib import xml2py
 
@@ -39,16 +42,18 @@ def main(argv=None):
                     , abspath( join(options.chipmunk_includes, "chipmunk.h") )
                     , abspath( join(options.chipmunk_includes, "chipmunk_unsafe.h") )
                     , abspath( join(options.chipmunk_includes, "chipmunk_ffi.h") )
-                    ,"-c" 
-                    ,"-o", "chipmunk.xml"]
+                    , "-c" 
+                    #, "-D", "CHIPMUNK_FFI"
+                    , "-o", "chipmunk.xml"]
 
     h2xml.main(h2xml_args)
     print("h2xml done")
 
     xml2py_args = ["generate_bindings.py"
-                    ,"-l", options.lib
-                    ,"-o", options.output
-                    ,"chipmunk.xml"]
+                    , "-l", options.lib
+                    , "-o", options.output
+                    , "-r", "cp.*"
+                    , "chipmunk.xml"]
     
     xml2py.main(argv = xml2py_args)
     print("xml2py done")
