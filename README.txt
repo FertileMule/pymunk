@@ -12,7 +12,7 @@ nice 2d physics library Chipmunk.
 2007 - 2012, Victor Blomqvist - vb@viblo.se, MIT License
 
 This release is based on the latest pymunk release (2.1.0), 
-using chipmunk 6.x (github rev 82ba83e, source included)
+using chipmunk 6.1.1 (source included)
 
 :Homepage: http://code.google.com/p/pymunk/
 :Forum: http://www.slembcke.net/forums/viewforum.php?f=6
@@ -56,7 +56,7 @@ See the included demos (in examples/)
 DEPENDENCIES/REQUIREMENTS
 =========================
 
-* python (tested on 2.5, 2.6, 2.7 and 3.2)
+* python (tested on 2.6, 2.7 and 3.2)
 * ctypes (included in python 2.5)
 * pygame (optional, you need it to run most of the demos)
 * pyglet (optional, you need it to run the moon buggy demo)
@@ -66,8 +66,8 @@ DEPENDENCIES/REQUIREMENTS
 CHIPMUNK
 ========
 
-Compiled libraries of Chipmunk compatible Windows and Linux 32bit are 
-distributed with pymunk.
+Compiled libraries of Chipmunk compatible Windows and Linux 32bit and 64bit 
+are distributed with pymunk.
 If pymunk doesnt have your particular platform included, you can compile 
 Chipmunk by hand with a custom setup argument::
 
@@ -78,6 +78,12 @@ util.py and others). If the compile fail, please check the readme in
 chipmunk_src for generic instructions on how to compile with gcc, 
 or download the relevant release from Chipmunk homepage and follow its
 instructions.
+
+The build_chipmunk command can take two arguments, -c <compiler> and -r. If 
+you compile on windows you probably want to use GCC through mingw or cygwin 
+to compile and not Visual Studio as the compile arguments are setup for GCC.
+If you dont want the debug prints compile with -r to have chipmunk compile 
+without debug asserts and debug prints.
 
 HOW TO GENERATE BINDINGS
 ========================

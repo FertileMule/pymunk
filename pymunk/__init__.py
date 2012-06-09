@@ -59,7 +59,7 @@ Valid only if pymunk was installed from a source or binary
 distribution (i.e. not in a checked-out copy from svn).
 """
 
-chipmunk_version = "%sR%s" % (cp.cpVersionString.value.decode(), '82ba83e')
+chipmunk_version = "%sR%s" % (cp.cpVersionString.value.decode(), '')
 """The Chipmunk version compatible with this pymunk version.
 Other (newer) Chipmunk versions might also work if the new version does not 
 contain any breaking API changes.
@@ -68,7 +68,8 @@ The string is in the following format:
 <cpVersionString>R<svn or github commit of chipmunk>
 where cpVersionString is a version string set by Chipmunk and the svn version 
 corresponds to the svn version of the chipmunk source files included with 
-pymunk or the github commit hash.
+pymunk or the github commit hash. If the Chipmunk version is a release then 
+the second part will be empty
 
 *Note:* This is also the version of the Chipmunk source files included in the 
 chipmunk_src folder (normally included in the pymunk source distribution).
@@ -571,6 +572,66 @@ class Space(object):
             shape = self._static_shapes[hashid_private]
         return shape
         
+    def nearest_point_query(self, point, max_distance, layers = -1, group = 0):
+        """Query space at point filtering out matches with the given layers 
+        and group. Return a list of all shapes within max_distance of the point.
+        
+        If you don't want to filter out any matches, use -1 for the layers 
+        and 0 as the group.
+        
+        :Parameters:    
+            point : (x,y) or `Vec2d`
+                Define where to check for collision in the space.
+            max_distance : int
+                Maximumm distance of shape from point
+            layers : int
+                Only pick shapes matching the bit mask. i.e. 
+                (layers & shape.layers) != 0
+            group : int
+                Only pick shapes in this group.
+        
+        :Return: 
+            [dict(shape=`Shape`, distance = distance, point = Vec2d)]
+        """
+        self.__query_hits = []
+        def cf(_shape, distance, point, data):
+            shape = self._get_shape(_shape)
+            self.__query_hits.append(dict(shape=shape, distance=distance, point=point))
+        f = cp.cpSpaceNearestPointQueryFunc(cf)
+        cp.cpSpaceNearestPointQuery(self._space, point, max_distance, layers, group, f, None)
+        
+        return self.__query_hits
+    
+    def nearest_point_query_nearest(self, point, max_distance, layers = -1, group = 0):
+        """Query space at point filtering out matches with the given layers 
+        and group. Return nearest of all shapes within max_distance of the 
+        point.
+        
+        If you don't want to filter out any matches, use -1 for the layers 
+        and 0 as the group.
+        
+        :Parameters:    
+            point : (x,y) or `Vec2d`
+                Define where to check for collision in the space.
+            max_distance : int
+                Maximumm distance of shape from point
+            layers : int
+                Only pick shapes matching the bit mask. i.e. 
+                (layers & shape.layers) != 0
+            group : int
+                Only pick shapes in this group.
+        
+        :Return: 
+            dict(shape=`Shape`, distance = distance, point = Vec2d)
+        """
+        info = cp.cpNearestPointQueryInfo()
+        info_p = ct.POINTER(cp.cpNearestPointQueryInfo)(info)
+        _shape = cp.cpSpaceNearestPointQueryNearest(self._space, point, max_distance, layers, group, info_p)
+        shape = self._get_shape(_shape)
+        if shape != None:
+            return dict(shape=shape, point=info.p, distance=info.d)
+        return None        
+        
     def point_query_first(self, point, layers = -1, group = 0):
         """Query space at point and return the first shape found matching the 
         given layers and group. Returns None if no shape was found.
@@ -624,8 +685,7 @@ class Space(object):
         shape = self._get_shape(_shape)
         if shape != None:
             return SegmentQueryInfo(shape, start, end, info.t, info.n)
-        else:
-            return None
+        return None
     
     def bb_query(self, bb, layers = -1, group = 0):
         """Perform a fast rectangle query on the space.

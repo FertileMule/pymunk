@@ -68,11 +68,11 @@ class UnitTestSpace(unittest.TestCase):
         self.assertEqual(len(self.s.shapes), 0)
         self.assertEqual(len(self.s.static_shapes), 0)
         
-    def testPointQueries(self):
-        
+    def testPointQuery(self):
         self.assertEqual(self.s.point_query_first((31,0)), None)
         self.assertEqual(self.s.point_query_first((10,0)), self.s1)
-        
+
+    def testPointQueryFirst(self):       
         b3 = p.Body(1,1)
         b3.position = 19,1
         s3 = p.Circle(b3, 10)
@@ -81,6 +81,25 @@ class UnitTestSpace(unittest.TestCase):
         self.assert_(self.s1 not in hits)
         self.assert_(self.s2 in hits)
         self.assert_(s3 in hits)
+        
+    def testNearestPointQuery(self):
+        res = self.s.nearest_point_query((-10,0), 20)
+        self.assertEqual(len(res), 1)
+        self.assertEqual(res[0]['distance'], 15)
+        self.assertEqual(res[0]['point'], Vec2d(5,0))
+        self.assertEqual(res[0]['shape'], self.s1)
+        
+        res = self.s.nearest_point_query((-10,0), 15)
+        self.assertEqual(len(res), 0)
+        
+    def testNearestPointQueryNearest(self):
+        res = self.s.nearest_point_query_nearest((-10,0), 200)
+        self.assertEqual(res['distance'], 15)
+        self.assertEqual(res['point'], Vec2d(5,0))
+        self.assertEqual(res['shape'], self.s1)
+        
+        res = self.s.nearest_point_query_nearest((-10,0), 15)
+        self.assertEqual(res, None)
         
     def testBBQuery(self):
         bb = p.BB(-7,-7,7,7)
