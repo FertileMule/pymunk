@@ -11,7 +11,7 @@ nice 2d physics library Chipmunk.
 
 2007 - 2012, Victor Blomqvist - vb@viblo.se, MIT License
 
-This release is based on the latest pymunk release (2.1.0), 
+This release is based on the latest pymunk release (3.0.0), 
 using chipmunk 6.1.1 (source included)
 
 :Homepage: http://code.google.com/p/pymunk/
@@ -56,7 +56,7 @@ See the included demos (in examples/)
 DEPENDENCIES/REQUIREMENTS
 =========================
 
-* python (tested on 2.6, 2.7 and 3.2)
+* python (tested on 2.6, 2.7 and 3.2. Also on pypy 1.9)
 * ctypes (included in python 2.5)
 * pygame (optional, you need it to run most of the demos)
 * pyglet (optional, you need it to run the moon buggy demo)

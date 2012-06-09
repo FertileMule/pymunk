@@ -53,7 +53,7 @@ from .vec2d import Vec2d
 
 from pymunk.constraint import *
 
-version = "2.1.0"
+version = "3.0.0"
 """The release version of this pymunk installation.
 Valid only if pymunk was installed from a source or binary 
 distribution (i.e. not in a checked-out copy from svn).
@@ -1428,13 +1428,25 @@ class Arbiter(object):
         return cp.cpArbiterTotalImpulse(self._arbiter)
     total_impulse = property(_get_total_impulse,
         doc="""Returns the impulse that was applied this step to resolve the 
-        collision""")
+        collision.
+        
+        This property should only be called from a post-solve, post-step""")
     
     def _get_total_impulse_with_friction(self):
         return cp.cpArbiterTotalImpulseWithFriction(self._arbiter)
     total_impulse_with_friction = property(_get_total_impulse_with_friction,
         doc="""Returns the impulse with friction that was applied this step to 
-        resolve the collision""")
+        resolve the collision.
+        
+        This property should only be called from a post-solve, post-step""")
+        
+    def _get_total_ke(self):
+        return cp.cpArbiterTotalKE(self._arbiter)
+    total_ke = property(_get_total_ke,
+        doc="""The amount of energy lost in a collision including static, but 
+        not dynamic friction.
+        
+        This property should only be called from a post-solve, post-step""")
         
     def _get_stamp(self):
         return self._arbiter.contents.stamp
