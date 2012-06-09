@@ -146,15 +146,9 @@ class Space(object):
         # check if the imported cp still exists.. think the only case when 
         # it doesnt is on program exit so should be more or less ok to skip 
         # the call to *free in that case
-        if cp is not None: 
-            #print "Free space", self._space
-            #for b in self.bodies:
-                #self.remove(b)
-                #print "removed", b
-            try:
-                cp.cpSpaceFree(self._space)
-            except Exception, e:
-                pass
+        if cp is not None:
+            cp.cpSpaceFree(self._space)
+            
 
 
     def _set_iterations(self, iterations):
