@@ -39,9 +39,6 @@ __all__ = ["inf", "version", "chipmunk_version"
         , "Space", "Body", "Shape", "Circle", "Poly", "Segment"
         , "moment_for_circle", "moment_for_poly", "moment_for_segment"
         , "moment_for_box", "reset_shapeid_counter"
-        , "Constraint", "PinJoint", "SlideJoint", "PivotJoint", "GrooveJoint"
-        , "DampedSpring", "DampedRotarySpring", "RotaryLimitJoint"
-        , "RatchetJoint", "GearJoint", "SimpleMotor"
         , "SegmentQueryInfo", "Contact", "Arbiter", "BB"]
 
 import ctypes as ct
@@ -71,15 +68,17 @@ corresponds to the svn version of the chipmunk source files included with
 pymunk or the github commit hash. If the Chipmunk version is a release then 
 the second part will be empty
 
-*Note:* This is also the version of the Chipmunk source files included in the 
-chipmunk_src folder (normally included in the pymunk source distribution).
+.. note:: 
+    This is also the version of the Chipmunk source files included in the 
+    chipmunk_src folder (normally included in the pymunk source distribution).
 """
 
 #inf = float('inf') # works only on python 2.6+
 inf = 1e100
-"""@deprecated You should create static bodies by invoking the body constructor 
-without any arguments, not using the infinity field. Expect inf to be removed 
-in pymunk 3.0
+""".. deprecated:: 2.0.0
+    You should create static bodies by invoking the body constructor 
+    without any arguments, not using the infinity field. Expect inf to be removed 
+    in pymunk 3.0
 
 Infinity that can be passed as mass or inertia to Body. 
 Use this as mass and inertia when you need to create a static body.
@@ -262,9 +261,10 @@ class Space(object):
     def remove(self, *objs):
         """Remove one or many shapes, bodies or constraints from the space
         
-        *Note* When removing objects from the space, make sure you remove any 
-        other objects that reference it. For instance, when you remove a body, 
-        remove the joints and shapes attached to it. 
+        .. Note:: 
+            When removing objects from the space, make sure you remove any 
+            other objects that reference it. For instance, when you remove a 
+            body, remove the joints and shapes attached to it. 
         """
         for o in objs:
             if isinstance(o, Body):
@@ -756,10 +756,11 @@ class Body(object):
     angle = property(_get_angle, _set_angle, 
         doc="""The rotation of the body. 
         
-        *Note* If you get small/no changes to the angle when for example a 
-        ball is "rolling" down a slope it might be because the Circle shape 
-        attached to the body or the slope shape does not have any friction 
-        set.""")
+        .. Note:: 
+            If you get small/no changes to the angle when for example a 
+            ball is "rolling" down a slope it might be because the Circle shape 
+            attached to the body or the slope shape does not have any friction 
+            set.""")
     
     def _get_rotation_vector(self):
         return self._bodycontents.rot
@@ -915,32 +916,6 @@ class Body(object):
                 Offset in world coordinates
         """
         cp.cpBodyApplyForce(self._body, f, r)
-
-    def apply_damped_spring(self, b, anchor1, anchor2, rlen, k, dmp, dt):
-        """Apply a spring force between this body and b at anchors anchr1 and 
-        anchr2 respectively. 
-        
-        *Note* not solving the damping forces in the impulse solver causes 
-        problems with large damping values. There is a new constraint type 
-        DampedSpring that should be used instead.        
-        
-        :Parameters:
-            b : `Body`
-                The other body
-            anchor1 : (x,y) or `Vec2d`
-                Anchor point on the first body
-            anchor2 : (x,y) or `Vec2d`
-                Anchor point on the second body
-            k : float
-                The spring constant (force/distance) (Young's modulus)
-            rlen : float
-                The rest length of the spring
-            dmp : float
-                The damping constant (force/velocity)
-            dt : float
-                The time step to apply the force over.
-        """
-        cp.cpApplyDampedSpring(self._body, b._body, anchor1, anchor2, rlen, k, dmp, dt)
                 
     def activate(self):
         """Wake up a sleeping or idle body."""
@@ -1066,7 +1041,34 @@ class Shape(object):
         self._shapecontents.u = u
     friction = property(_get_friction, _set_friction, 
         doc="""Friction coefficient. pymunk uses the Coulomb friction model, a 
-        value of 0.0 is frictionless.""")
+        value of 0.0 is frictionless.
+        
+        A value over 1.0 is perfectly fine.
+        
+        Some real world example values from wikipedia (Remember that 
+        it is what looks good that is important, not the exact value).
+        
+        ==============  ======  ========
+        Material        Other   Friction
+        ==============  ======  ========
+        Aluminium       Steel   0.61
+        Copper          Steel   0.53
+        Brass           Steel   0.51
+        Cast iron       Copper  1.05
+        Cast iron       Zinc    0.85
+        Concrete (wet)  Rubber  0.30
+        Concrete (dry)  Rubber  1.0 
+        Concrete        Wood    0.62
+        Copper          Glass   0.68
+        Glass           Glass   0.94
+        Metal           Wood    0.5
+        Polyethene      Steel   0.2
+        Steel           Steel   0.80
+        Steel           Teflon  0.04
+        Teflon (PTFE)   Teflon  0.04
+        Wood            Wood    0.4
+        ==============  ======  ========
+        """)
 
     def _get_surface_velocity(self):
         return self._shapecontents.surface_v
@@ -1158,10 +1160,11 @@ class Circle(Shape):
     def unsafe_set_radius(self, r):
         """Unsafe set the radius of the circle. 
     
-        *WARNING:* This change is only picked up as a change to the position 
-        of the shape's surface, but not it's velocity. Changing it will not 
-        result in realistic physical behavior. Only use if you know what you 
-        are doing!
+        .. note:: 
+            This change is only picked up as a change to the position 
+            of the shape's surface, but not it's velocity. Changing it will 
+            not result in realistic physical behavior. Only use if you know 
+            what you are doing!
         """
         cp.cpCircleShapeSetRadius(self._shape, r)
         
@@ -1172,10 +1175,11 @@ class Circle(Shape):
     def unsafe_set_offset(self, o):
         """Unsafe set the offset of the circle. 
     
-        *WARNING:* This change is only picked up as a change to the position 
-        of the shape's surface, but not it's velocity. Changing it will not 
-        result in realistic physical behavior. Only use if you know what you 
-        are doing!
+        .. note:: 
+            This change is only picked up as a change to the position 
+            of the shape's surface, but not it's velocity. Changing it will 
+            not result in realistic physical behavior. Only use if you know 
+            what you are doing!
         """
         cp.cpCircleShapeSetOffset(self._shape, o)
     
@@ -1335,8 +1339,8 @@ class Contact(object):
     def __init__(self, _contact):
         """Initialize a Contact object from the Chipmunk equivalent struct
         
-        *Note:* You should never need to create an instance of this class 
-        directly.
+        .. note:: 
+            You should never need to create an instance of this class directly.
         """
         self._point = _contact.point
         self._normal = _contact.normal
@@ -1373,8 +1377,8 @@ class Arbiter(object):
         """Initialize an Arbiter object from the Chipmunk equivalent struct 
         and the Space.
         
-        *Note:* You should never need to create an instance of this class 
-        directly.
+        .. note::
+            You should never need to create an instance of this class directly.
         """
 
         self._arbiter = _arbiter
