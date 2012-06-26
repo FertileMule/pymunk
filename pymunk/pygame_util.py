@@ -31,8 +31,8 @@ about your coordinate system and not in any way optimized.
 __version__ = "$Id$"
 __docformat__ = "reStructuredText"
 
-__all__ = ["draw_space", "draw_shape", "draw_poly", "draw_circle"
-         , "draw_segment", "draw_shape", "draw_constraint"]
+__all__ = ["draw_space", "draw_shape", "draw_circle", "draw_poly"
+         , "draw_segment", "draw_constraint", "to_pygame", "from_pygame"]
 
 import pygame
 from pygame.locals import *
@@ -41,11 +41,60 @@ from pygame.color import *
 import pymunk
 from pymunk.vec2d import Vec2d
 
-def to_pygame(p, s):
-    return int(p.x), s.get_height()-int(p.y)
-def from_pygame(p, s):
-    return to_pygame(p,s)
 
+
+def draw_space(surface, space):
+    """Draw the contents of a pymunk.Space object on a pygame.Surface object
+    
+    This method currently supports drawing of
+        * pymunk.Segment
+        * pymunk.Circle
+        * pymunk.Poly
+        * pymunk.Constraint objects
+
+    You can control the color of a shape by setting shape.color to the color 
+    you want it drawn in.
+    
+    >>> my_shape.color = pygame.color.THECOLORS["pink"]
+        
+    Not all constraints are currently drawn in a very clear way, but all the 
+    different shapes should look fine both as static and dynamic objects.
+    
+    See pygame_util.demo.py for a full example
+    
+    :Parameters:
+            surface : pygame.Surface
+                Surface that the space will be drawn on
+            space : pymunk.Space
+                The contents of this Space will be drawn on the surface. 
+    """
+    
+    (width, height) = surface.get_size()
+    
+    for s in space.shapes:
+        draw_shape(surface, s)
+            
+    for c in space.constraints:
+        draw_constraint(surface, c)
+
+def draw_shape(surface, shape):
+    """Draw a pymunk.Shape object
+    
+    See the documentation of draw_space for full details
+    
+    :Parameters:
+            surface : pygame.Surface
+                Surface that the space will be drawn on
+            shape : pymunk.Shape
+                The Shape object to draw
+    """
+    if isinstance(shape, pymunk.Circle):
+        draw_circle(surface, shape)
+    elif isinstance(shape, pymunk.Segment):
+        draw_segment(surface, shape)
+    elif  isinstance(shape, pymunk.Poly):
+        draw_poly(surface, shape)
+        
 def draw_circle(surface, circle):
     """Draw a pymunk.Circle object
     
@@ -74,6 +123,28 @@ def draw_circle(surface, circle):
     line_r = 3 if circle.radius > 20 else 1
     pygame.draw.lines(surface, THECOLORS["blue"], False, [p,p2], line_r)
 
+def draw_poly(surface, poly):
+    """Draw a pymunk.Poly object
+    
+    See help of draw_space for full details
+    
+    :Parameters:
+            surface : pygame.Surface
+                Surface that the space will be drawn on
+            shape : pymunk.Poly
+                The poly shape to draw
+    """
+    ps = poly.get_points()
+    ps = [to_pygame(p, surface) for p in ps]
+    ps += [ps[0]]
+    if hasattr(poly, "color"):
+        color = poly.color  
+    elif poly.body.is_static:
+        color = THECOLORS["lightgrey"]
+    else:
+        color = THECOLORS["green"]
+    pygame.draw.lines(surface, color, False, ps, 1)
+
 def draw_segment(surface, segment):
     """Draw a pymunk.Segment object
     
@@ -97,46 +168,6 @@ def draw_segment(surface, segment):
     else:
         color = THECOLORS["blue"]
     pygame.draw.lines(surface, color, False, [p1,p2], int(segment.radius))
-
-def draw_poly(surface, poly):
-    """Draw a pymunk.Poly object
-    
-    See help of draw_space for full details
-    
-    :Parameters:
-            surface : pygame.Surface
-                Surface that the space will be drawn on
-            shape : pymunk.Poly
-                The poly shape to draw
-    """
-    ps = poly.get_points()
-    ps = [to_pygame(p, surface) for p in ps]
-    ps += [ps[0]]
-    if hasattr(poly, "color"):
-        color = poly.color  
-    elif poly.body.is_static:
-        color = THECOLORS["lightgrey"]
-    else:
-        color = THECOLORS["green"]
-    pygame.draw.lines(surface, color, False, ps, 1)
-
-def draw_shape(surface, shape):
-    """Draw a pymunk.Shape object
-    
-    See the documentation of draw_space for full details
-    
-    :Parameters:
-            surface : pygame.Surface
-                Surface that the space will be drawn on
-            shape : pymunk.Shape
-                The Shape object to draw
-    """
-    if isinstance(shape, pymunk.Circle):
-        draw_circle(surface, shape)
-    elif isinstance(shape, pymunk.Segment):
-        draw_segment(surface, shape)
-    elif  isinstance(shape, pymunk.Poly):
-        draw_poly(surface, shape)
     
 def draw_constraint(surface, constraint):
     """Draw a pymunk.Constraint object
@@ -181,38 +212,15 @@ def draw_constraint(surface, constraint):
         p2 = to_pygame(pv2, surface)
         pygame.draw.aalines(surface, THECOLORS["darkgray"], False, [p1,p2])    
         
-        
-def draw_space(surface, space):
-    """Draw the contents of a pymunk.Space object on a pygame.Surface object
-    
-    This method currently supports drawing of
-        * pymunk.Segment
-        * pymunk.Circle
-        * pymunk.Poly
-        * pymunk.Constraint objects
-
-    You can control the color of a shape by setting shape.color to the color 
-    you want it drawn in.
-    
-    >>> my_shape.color = pygame.color.THECOLORS["pink"]
-        
-    Not all constraints are currently drawn in a very clear way, but all the 
-    different shapes should look fine both as static and dynamic objects.
-    
-    See pygame_util.demo.py for a full example
-    
-    :Parameters:
-            surface : pygame.Surface
-                Surface that the space will be drawn on
-            space : pymunk.Space
-                The contents of this Space will be drawn on the surface. 
+def to_pygame(p, s):
+    """Convenience method to convert pymunk coordinates to pygame surface 
+    local coordinates
     """
-    
-    (width, height) = surface.get_size()
-    
-    for s in space.shapes:
-        draw_shape(surface, s)
-            
-    for c in space.constraints:
-        draw_constraint(surface, c)
+    return int(p.x), s.get_height()-int(p.y)
+def from_pygame(p, s):
+    """Convenience method to convert pygame surface local coordinates to 
+    pymunk coordinates    
+    """
+    return to_pygame(p,s)
+
             

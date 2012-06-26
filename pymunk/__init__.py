@@ -75,13 +75,17 @@ the second part will be empty
 
 #inf = float('inf') # works only on python 2.6+
 inf = 1e100
-""".. deprecated:: 2.0.0
-    You should create static bodies by invoking the body constructor 
-    without any arguments, not using the infinity field. Expect inf to be removed 
-    in pymunk 3.0
+"""Infinity that can be passed as mass or inertia to Body. 
 
-Infinity that can be passed as mass or inertia to Body. 
-Use this as mass and inertia when you need to create a static body.
+Useful when you for example want a body that cannot rotate, just set its 
+moment to inf. Just remember that if two objects with both infinite masses 
+collides the world might explode. Similary effects can happen with infinite 
+moment.
+
+.. note::
+    In previous versions of pymunk you used inf to create static bodies. This
+    has changed and you should isntead do it by invoking the body constructor 
+    without any arguments.
 """
 
 class Space(object):
