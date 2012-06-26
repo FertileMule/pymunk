@@ -37,7 +37,7 @@ def setup_level(space, player_body):
     
     # Remove balls and bricks
     for s in space.shapes[:]:
-        if s.body not in [player_body]:
+        if not s.body.is_static and s.body not in [player_body]:
             space.remove(s.body, s)
             
     # Spawn a ball for the player to have something to play with
@@ -63,14 +63,6 @@ def setup_level(space, player_body):
     space.add_collision_handler(2, 0, separate = remove_first)
 
 def draw_space(screen, space):
-    # Static shapes (the walls)
-    for line in space.static_shapes:
-        body = line.body
-        pv1 = body.position + line.a.rotated(body.angle)
-        pv2 = body.position + line.b.rotated(body.angle)
-        p1 = to_pygame(pv1)
-        p2 = to_pygame(pv2)
-        pygame.draw.lines(screen, line.color, False, [p1,p2], int(line.radius))
     
     # Constraints
     for c in space.constraints:
@@ -84,16 +76,24 @@ def draw_space(screen, space):
         p2 = to_pygame(pv2)
         pygame.draw.aalines(screen, THECOLORS["darkgray"], False, [p1,p2])
         
-    # moving shapes including player
+    
     for shape in space.shapes:
-        if isinstance(shape, pymunk.Circle):
-            p = to_pygame(shape.body.position)
-            pygame.draw.circle(screen, shape.color, p, int(shape.radius), 0)
-        if isinstance(shape, pymunk.Poly):
-            ps = shape.get_points()
-            ps = [to_pygame(p) for p in ps]
-            ps += [ps[0]]
-            pygame.draw.lines(screen, shape.color, False, ps, 1)
+        if shape.body.is_static: # Static shapes (the walls)
+            body = shape.body
+            pv1 = body.position + shape.a.rotated(body.angle)
+            pv2 = body.position + shape.b.rotated(body.angle)
+            p1 = to_pygame(pv1)
+            p2 = to_pygame(pv2)
+            pygame.draw.lines(screen, shape.color, False, [p1,p2], int(shape.radius))
+        else: # moving shapes including player
+            if isinstance(shape, pymunk.Circle):
+                p = to_pygame(shape.body.position)
+                pygame.draw.circle(screen, shape.color, p, int(shape.radius), 0)
+            if isinstance(shape, pymunk.Poly):
+                ps = shape.get_points()
+                ps = [to_pygame(p) for p in ps]
+                ps += [ps[0]]
+                pygame.draw.lines(screen, shape.color, False, ps, 1)
     
 def main():
     ### PyGame init
@@ -115,7 +115,7 @@ def main():
         line.color = THECOLORS['lightgray']
         line.elasticity = 1.0
     
-    space.add_static(static_lines)
+    space.add(static_lines)
 
     # bottom - a sensor that removes anything touching it
     bottom = pymunk.Segment(space.static_body, (50, 50), (550, 50), 5)
@@ -127,7 +127,7 @@ def main():
         space.add_post_step_callback(space.remove, first_shape, first_shape.body)
         return True
     space.add_collision_handler(0, 1, begin = remove_first)
-    space.add_static(bottom)
+    space.add(bottom)
     
     ### Player ship
     player_body = pymunk.Body(500, pymunk.inf)
