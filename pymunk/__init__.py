@@ -113,19 +113,19 @@ class Space(object):
         self._post_step_callbacks = {}
         
         self._shapes = {}
-        self._static_shapes = {}
+        #self._static_shapes = {}
         self._bodies = set()
         self._constraints = set()
 
     def _get_shapes(self):
         return list(self._shapes.values())
     shapes = property(_get_shapes, 
-        doc="""A list of the shapes added to this space""")
+        doc="""A list of all the shapes added to this space (both static and non-static)""")
 
-    def _get_static_shapes(self):
-        return list(self._static_shapes.values())
-    static_shapes = property(_get_static_shapes,
-        doc="""A list of the static shapes added to this space""")
+    # def _get_static_shapes(self):
+        # return list(self._static_shapes.values())
+    # static_shapes = property(_get_static_shapes,
+        # doc="""A list of the static shapes added to this space""")
 
     def _get_bodies(self):
         return list(self._bodies)
@@ -249,14 +249,14 @@ class Space(object):
                 for oo in o:
                     self.add(oo)
                     
-    def add_static(self, *objs):
-        """Add one or many static shapes to the space"""
-        for o in objs:
-            if isinstance(o, Shape):
-                self._add_static_shape(o)
-            else:
-                for oo in o:
-                    self.add_static(oo)
+    # def add_static(self, *objs):
+        # """Add one or many static shapes to the space"""
+        # for o in objs:
+            # if isinstance(o, Shape):
+                # self._add_static_shape(o)
+            # else:
+                # for oo in o:
+                    # self.add_static(oo)
                     
     def remove(self, *objs):
         """Remove one or many shapes, bodies or constraints from the space
@@ -277,28 +277,28 @@ class Space(object):
                 for oo in o:
                     self.remove(oo)
                     
-    def remove_static(self, *objs):
-        """Remove one or many static shapes from the space"""
-        for o in objs:
-            if isinstance(o, Shape):
-                self._remove_static_shape(o)
-            else:
-                for oo in o:
-                    self.remove_static(oo)
+    # def remove_static(self, *objs):
+        # """Remove one or many static shapes from the space"""
+        # for o in objs:
+            # if isinstance(o, Shape):
+                # self._remove_static_shape(o)
+            # else:
+                # for oo in o:
+                    # self.remove_static(oo)
                     
     def _add_shape(self, shape):
         """Adds a shape to the space"""
         assert shape._hashid_private not in self._shapes, "shape already added to space"
         self._shapes[shape._hashid_private] = shape
         cp.cpSpaceAddShape(self._space, shape._shape)
-    def _add_static_shape(self, static_shape):
-        """Adds a shape to the space. Static shapes should be be attached to 
-        a rigid body with an infinite mass and moment of inertia. Also, don't 
-        add the rigid body used to the space, as that will cause it to fall 
-        under the effects of gravity."""
-        assert static_shape._hashid_private not in self._static_shapes, "shape already added to space"
-        self._static_shapes[static_shape._hashid_private] = static_shape
-        cp.cpSpaceAddStaticShape(self._space, static_shape._shape)
+    # def _add_static_shape(self, static_shape):
+        # """Adds a shape to the space. Static shapes should be be attached to 
+        # a rigid body with an infinite mass and moment of inertia. Also, don't 
+        # add the rigid body used to the space, as that will cause it to fall 
+        # under the effects of gravity."""
+        # assert static_shape._hashid_private not in self._static_shapes, "shape already added to space"
+        # self._static_shapes[static_shape._hashid_private] = static_shape
+        # cp.cpSpaceAddStaticShape(self._space, static_shape._shape)
     def _add_body(self, body):
         """Adds a body to the space"""
         assert body not in self._bodies, "body already added to space"
@@ -314,10 +314,10 @@ class Space(object):
         """Removes a shape from the space"""
         del self._shapes[shape._hashid_private]
         cp.cpSpaceRemoveShape(self._space, shape._shape)
-    def _remove_static_shape(self, static_shape):
-        """Removes a static shape from the space."""
-        del self._static_shapes[static_shape._hashid_private]
-        cp.cpSpaceRemoveStaticShape(self._space, static_shape._shape)
+    # def _remove_static_shape(self, static_shape):
+        # """Removes a static shape from the space."""
+        # del self._static_shapes[static_shape._hashid_private]
+        # cp.cpSpaceRemoveStaticShape(self._space, static_shape._shape)
     def _remove_body(self, body):
         """Removes a body from the space"""
         self._bodies.remove(body)
