@@ -54,19 +54,17 @@ class UnitTestSpace(unittest.TestCase):
         self.s.add(self.b1)
         b = p.Body()
         s3 = p.Circle(b,2)
-        self.s.add_static(s3)
+        self.s.add(s3)
         b3 = p.Body(1,1)
         self.s.add(b3)
         
         self.assertEqual(len(self.s.bodies), 3)
-        self.assertEqual(len(self.s.shapes), 2)
-        self.assertEqual(len(self.s.static_shapes), 1)
+        self.assertEqual(len(self.s.shapes), 3)
         
         self.s.remove(self.s2,self.b1,self.s1)
-        self.s.remove_static(s3)
+        self.s.remove(s3)
         self.assertEqual(len(self.s.bodies), 2)
         self.assertEqual(len(self.s.shapes), 0)
-        self.assertEqual(len(self.s.static_shapes), 0)
         
     def testPointQuery(self):
         self.assertEqual(self.s.point_query_first((31,0)), None)
@@ -120,11 +118,11 @@ class UnitTestSpace(unittest.TestCase):
         
         
     def testStaticPointQueries(self):
-        b = p.Body(p.inf, p.inf)
+        b = p.Body()
         c = p.Circle(b, 10)
         b.position = -50,-50
         
-        self.s.add_static(c)
+        self.s.add(c)
         
         hit = self.s.point_query_first( (-50,-55) )
         self.assertEqual(hit, c)
@@ -132,10 +130,10 @@ class UnitTestSpace(unittest.TestCase):
         self.assertEqual(hits[0], c)
     
     def testReindexStatic(self):
-        b = p.Body(p.inf, p.inf)
+        b = p.Body()
         c = p.Circle(b, 10)
         
-        self.s.add_static(c)
+        self.s.add(c)
         
         b.position = -50,-50
         hit = self.s.point_query_first( (-50,-55) )
@@ -153,11 +151,11 @@ class UnitTestSpace(unittest.TestCase):
         c1 = p.Circle(b1, 10)
         b1.position = 20, 20
         
-        b2 = p.Body(p.inf, p.inf)
+        b2 = p.Body()
         s2 = p.Segment(b2, (-10,0), (10,0),1)
         
         self.s.add(b1,c1)
-        self.s.add_static(s2)
+        self.s.add(s2)
 
         s2.b = (100,0)
         self.s.gravity = 0, -100
@@ -177,10 +175,10 @@ class UnitTestSpace(unittest.TestCase):
         self.assert_(b1.position.y > 10)
     
     def testReindexShape(self):
-        b = p.Body(p.inf, p.inf)
+        b = p.Body()
         c = p.Circle(b, 10)
         
-        self.s.add_static(c)
+        self.s.add(c)
         
         b.position = -50,-50
         hit = self.s.point_query_first( (-50,-55) )
@@ -211,11 +209,11 @@ class UnitTestSpace(unittest.TestCase):
         self.assert_(s3 in hit_shapes)
 
     def testStaticSegmentQueries(self):
-        b = p.Body(p.inf, p.inf)
+        b = p.Body()
         c = p.Circle(b, 10)
         b.position = -50,-50
         
-        self.s.add_static(c)
+        self.s.add(c)
         
         hit = self.s.segment_query_first( (-70,-50), (-30, -50) )
         self.assertEqual(hit.shape, c)
