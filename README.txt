@@ -31,7 +31,7 @@ API documentation. There is also a few tutorials on the googlecode page
 and in the (shared) forum. 
 
 If chipmunk doesnt ship with a chipmunk binary your platform can understand
-(currently Windows and Linux 32bit are included) you will have to 
+(currently Windows and Linux 32bit and 64 bit are included) you will have to 
 compile chipmunk before install. See section CHIPMUNK in this readme for 
 (very simple) instructions.
 
@@ -103,6 +103,6 @@ _chipmunk.py file with generated bindings.
 
 Note: If you only want one or two new functions its probably easier to 
 just add them manually to _chipmunk.py. See the ctypes documentation for
-instructions on how the function definitons/structs/whatever should look 
+instructions on what the function definitons/structs/whatever should look 
 like.
 

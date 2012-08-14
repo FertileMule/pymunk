@@ -1,7 +1,6 @@
 pymunk Package
 ==============
 
-
 :mod:`pymunk` Package
 ---------------------
 
@@ -10,16 +9,13 @@ pymunk Package
     :undoc-members:
     :show-inheritance:
     :inherited-members:
-
-.. autosummary::
-    
     
 .. toctree::
-    :maxdepth: 5
+    :maxdepth: 6
 
     pymunk.constraint
-    pymunk.util
     pymunk.vec2d
+    pymunk.util    
     pymunk.pygame_util
-
+    pymunkoptions
 
