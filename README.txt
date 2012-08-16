@@ -60,6 +60,7 @@ DEPENDENCIES/REQUIREMENTS
 * ctypes (included in python 2.5)
 * pygame (optional, you need it to run most of the demos)
 * pyglet (optional, you need it to run the moon buggy demo)
+* sphinx (optional, you need it to build documentation)
 * ctypeslib & GCC_XML (optional, you need them to generate new bindings)
 * chipmunk (pymunk ships with a set of chipmunk libraries)
 
