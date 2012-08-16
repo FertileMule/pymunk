@@ -1,9 +1,9 @@
-pymunk Package
-==============
+API Reference
+====================
 
 :mod:`pymunk` Package
 ---------------------
-
+ 
 .. automodule:: pymunk
     :members:
     :undoc-members:

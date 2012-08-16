@@ -5,11 +5,8 @@ pymunk does not need to be installed. However, you might need to compile the
 chipmunk library that pymunk uses internally if a precompiled library was not 
 included for your Platform. The default pymunk distribution ships with at least
 32-bit Windows and 32- and 64-bit Linux versions. However, even if a compiled 
-library is not shipped dont despair, it is very easy to compile chipmunk as 
-long as you have a gcc-compatible c compiler installed. 
-
-
-
+library is not shipped you should not despair! It is very easy to compile chipmunk 
+as long as you have a gcc-compatible c compiler installed. 
 
 .. _without-install:
 
@@ -75,7 +72,7 @@ argument::
 
     > python setup.py build_chipmunk --compiler=mingw32
     
-To compile Chipmunk in Release mode use the release argument (for example to 
+To compile Chipmunk in Release mode use the release argument (Usefull to 
 avoid some debug prints and asserts)::
 
     > python setup.py build_chipmunk --release
