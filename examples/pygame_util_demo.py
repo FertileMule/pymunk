@@ -1,3 +1,9 @@
+"""Showcase what the output of pymunk.pygame_util draw methods will look like
+"""
+
+__version__ = "$Id:$"
+__docformat__ = "reStructuredText"
+
 import sys
 
 import pygame
@@ -163,7 +169,9 @@ def main():
         for event in pygame.event.get():
             if event.type == QUIT or \
                 event.type == KEYDOWN and (event.key in [K_ESCAPE, K_q]):  
-                return          
+                return 
+            elif event.type == KEYDOWN and event.key == K_p:
+                pygame.image.save(screen, "pygame_util_demo.png")                
                                   
         clock.tick()
         

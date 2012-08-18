@@ -74,7 +74,7 @@
 # SOFTWARE.
 # ----------------------------------------------------------------------------
 
-"""Contains helper functions to draw pymunk objects using pygame.
+"""Contains helper functions to help using pygame with pymunk.
 
 Intended to help with debugging and prototyping, not for actual production use
 in a full application. The methods contained in this module is opinionated 
@@ -212,15 +212,17 @@ from pymunk.vec2d import Vec2d
     body = segment.body
     pv1 = body.position + segment.a.rotated(body.angle)
     pv2 = body.position + segment.b.rotated(body.angle)
+
     p1 = to_pygame(pv1, surface)
     p2 = to_pygame(pv2, surface)
+    
     if hasattr(segment, "color"):
         color = segment.color  
     elif segment.body.is_static:
         color = THECOLORS["lightgrey"]
     else:
         color = THECOLORS["blue"]
-    pygame.draw.lines(surface, color, False, [p1,p2], int(segment.radius))
+    pygame.draw.lines(surface, color, False, [p1,p2], max(int(segment.radius),1))
     </div>
 <div class="viewcode-block" id="draw_constraint"><a class="viewcode-back" href="../../pymunk.pygame_util.html#pymunk.pygame_util.draw_constraint">[docs]</a>def draw_constraint(surface, constraint):
     """Draw a pymunk.Constraint object
@@ -264,17 +266,23 @@ from pymunk.vec2d import Vec2d
         p1 = to_pygame(pv1, surface)
         p2 = to_pygame(pv2, surface)
         pygame.draw.aalines(surface, THECOLORS["darkgray"], False, [p1,p2])    
-        </div>
-<div class="viewcode-block" id="to_pygame"><a class="viewcode-back" href="../../pymunk.pygame_util.html#pymunk.pygame_util.to_pygame">[docs]</a>def to_pygame(p, s):
+</div>
+def get_mouse_pos(surface):
+    """Get position of the mouse pointer in pymunk coordinates."""
+    p = pygame.mouse.get_pos()
+    return from_pygame(p, surface)
+
+<div class="viewcode-block" id="to_pygame"><a class="viewcode-back" href="../../pymunk.pygame_util.html#pymunk.pygame_util.to_pygame">[docs]</a>def to_pygame(p, surface):
     """Convenience method to convert pymunk coordinates to pygame surface 
     local coordinates
     """
-    return int(p.x), s.get_height()-int(p.y)</div>
-<div class="viewcode-block" id="from_pygame"><a class="viewcode-back" href="../../pymunk.pygame_util.html#pymunk.pygame_util.from_pygame">[docs]</a>def from_pygame(p, s):
+    return int(p[0]), surface.get_height()-int(p[1])
+    </div>
+<div class="viewcode-block" id="from_pygame"><a class="viewcode-back" href="../../pymunk.pygame_util.html#pymunk.pygame_util.from_pygame">[docs]</a>def from_pygame(p, surface):
     """Convenience method to convert pygame surface local coordinates to 
     pymunk coordinates    
     """
-    return to_pygame(p,s)
+    return to_pygame(p,surface)
 
             </div>
 </pre>
@@ -291,6 +299,7 @@ from pymunk.vec2d import Vec2d
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../pymunk.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a></li>
 </ul>
 

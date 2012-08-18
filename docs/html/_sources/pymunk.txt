@@ -3,13 +3,9 @@ API Reference
 
 :mod:`pymunk` Package
 ---------------------
- 
-.. automodule:: pymunk
-    :members:
-    :undoc-members:
-    :show-inheritance:
-    :inherited-members:
-    
+
+.. rubric:: Submodules
+
 .. toctree::
     :maxdepth: 6
 
@@ -19,3 +15,10 @@ API Reference
     pymunk.pygame_util
     pymunkoptions
 
+.. rubric:: pymunk
+
+.. automodule:: pymunk
+    :members:
+    :undoc-members:
+    :show-inheritance:
+    :inherited-members:

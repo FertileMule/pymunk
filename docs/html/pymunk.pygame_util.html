@@ -59,7 +59,7 @@
             
   <div class="section" id="module-pymunk.pygame_util">
 <span id="pymunk-pygame-util-module"></span><h1><a class="reference internal" href="#module-pymunk.pygame_util" title="pymunk.pygame_util"><tt class="xref py py-mod docutils literal"><span class="pre">pymunk.pygame_util</span></tt></a> Module<a class="headerlink" href="#module-pymunk.pygame_util" title="Permalink to this headline">¶</a></h1>
-<p>Contains helper functions to draw pymunk objects using pygame.</p>
+<p>Contains helper functions to help using pygame with pymunk.</p>
 <p>Intended to help with debugging and prototyping, not for actual production use
 in a full application. The methods contained in this module is opinionated 
 about your coordinate system and not in any way optimized.</p>
@@ -220,14 +220,14 @@ different shapes should look fine both as static and dynamic objects.</p>
 
 <dl class="function">
 <dt id="pymunk.pygame_util.to_pygame">
-<tt class="descclassname">pymunk.pygame_util.</tt><tt class="descname">to_pygame</tt><big>(</big><em>p</em>, <em>s</em><big>)</big><a class="reference internal" href="_modules/pymunk/pygame_util.html#to_pygame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymunk.pygame_util.to_pygame" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">pymunk.pygame_util.</tt><tt class="descname">to_pygame</tt><big>(</big><em>p</em>, <em>surface</em><big>)</big><a class="reference internal" href="_modules/pymunk/pygame_util.html#to_pygame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymunk.pygame_util.to_pygame" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convenience method to convert pymunk coordinates to pygame surface 
 local coordinates</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="pymunk.pygame_util.from_pygame">
-<tt class="descclassname">pymunk.pygame_util.</tt><tt class="descname">from_pygame</tt><big>(</big><em>p</em>, <em>s</em><big>)</big><a class="reference internal" href="_modules/pymunk/pygame_util.html#from_pygame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymunk.pygame_util.from_pygame" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">pymunk.pygame_util.</tt><tt class="descname">from_pygame</tt><big>(</big><em>p</em>, <em>surface</em><big>)</big><a class="reference internal" href="_modules/pymunk/pygame_util.html#from_pygame"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pymunk.pygame_util.from_pygame" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convenience method to convert pygame surface local coordinates to 
 pymunk coordinates</p>
 </dd></dl>
@@ -247,7 +247,7 @@ pymunk coordinates</p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="pymunk.html">API Reference</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="pymunk.html#module-pymunk"><tt class="docutils literal"><span class="pre">pymunk</span></tt> Package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="pymunk.html#pymunk-package"><tt class="docutils literal"><span class="pre">pymunk</span></tt> Package</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="pymunk.constraint.html"><tt class="docutils literal"><span class="pre">pymunk.constraint</span></tt> Module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pymunk.vec2d.html"><tt class="docutils literal"><span class="pre">pymunk.vec2d</span></tt> Module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pymunk.util.html"><tt class="docutils literal"><span class="pre">pymunk.util</span></tt> Module</a></li>
@@ -257,6 +257,7 @@ pymunk coordinates</p>
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a></li>
 </ul>
 
@@ -265,7 +266,7 @@ pymunk coordinates</p>
                         title="previous chapter"><tt class="docutils literal"><span class="pre">pymunk.util</span></tt> Module</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="pymunkoptions.html"
-                        title="next chapter"><tt class="docutils literal"><span class="pre">pymunkoptions</span></tt> Module</a></p>
+                        title="next chapter"><tt class="docutils literal docutils literal"><span class="pre">pymunkoptions</span></tt> Module</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/pymunk.pygame_util.txt"

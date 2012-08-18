@@ -1,3 +1,9 @@
+"""Showcase of flying arrows that can stick to objects in a somewhat realistic looking way.
+"""
+
+__version__ = "$Id:$"
+__docformat__ = "reStructuredText"
+
 import sys
 
 import pygame
@@ -62,7 +68,7 @@ def main():
     for s in static:
         s.friction = 1.
         s.group = 1
-    space.add_static(static)
+    space.add(static)
     
     # "Cannon" that can fire arrows
     cannon_body = pymunk.Body(pymunk.inf, pymunk.inf)
@@ -85,7 +91,8 @@ def main():
                 running = False
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 start_time = pygame.time.get_ticks()
-                
+            elif event.type == KEYDOWN and event.key == K_p:
+                pygame.image.save(screen, "arrows.png")
             elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                 end_time = pygame.time.get_ticks()
                 
@@ -161,4 +168,3 @@ def main():
 
 if __name__ == '__main__':
     sys.exit(main())
-    

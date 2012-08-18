@@ -1,3 +1,13 @@
+"""Very simple breakout clone. A circle shape serves as the paddle, then 
+breakable bricks constructed of Poly-shapes. 
+
+The code showcases severaly pymunk concepts such as elasitcity, impulses, 
+constant object speed, joints, collision handlers and post step callbacks.
+"""
+
+__version__ = "$Id:$"
+__docformat__ = "reStructuredText"
+
 import math, sys, random
 import os
 
@@ -7,14 +17,8 @@ from pygame.color import *
     
 import pymunk
 from pymunk import Vec2d
-
+import pymunk.pygame_util
 width, height = 600,600
-
-def to_pygame(p):
-    """Small hack to convert pymunk to pygame coordinates"""
-    return int(p.x), int(-p.y+height)
-def from_pygame(p): 
-    return to_pygame(p)
 
 def spawn_ball(space, position, direction):
     ball_body = pymunk.Body(1, pymunk.inf)
@@ -62,39 +66,6 @@ def setup_level(space, player_body):
         space.add_post_step_callback(space.remove, first_shape, first_shape.body)
     space.add_collision_handler(2, 0, separate = remove_first)
 
-def draw_space(screen, space):
-    
-    # Constraints
-    for c in space.constraints:
-        if isinstance(c, pymunk.GrooveJoint) and hasattr(c, "groove_a"):
-            pv1 = c.a.position + c.groove_a
-            pv2 = c.a.position + c.groove_b
-        else:
-            pv1 = c.a.position + c.anchr1
-            pv2 = c.b.position + c.anchr2
-        p1 = to_pygame(pv1)
-        p2 = to_pygame(pv2)
-        pygame.draw.aalines(screen, THECOLORS["darkgray"], False, [p1,p2])
-        
-    
-    for shape in space.shapes:
-        if shape.body.is_static: # Static shapes (the walls)
-            body = shape.body
-            pv1 = body.position + shape.a.rotated(body.angle)
-            pv2 = body.position + shape.b.rotated(body.angle)
-            p1 = to_pygame(pv1)
-            p2 = to_pygame(pv2)
-            pygame.draw.lines(screen, shape.color, False, [p1,p2], int(shape.radius))
-        else: # moving shapes including player
-            if isinstance(shape, pymunk.Circle):
-                p = to_pygame(shape.body.position)
-                pygame.draw.circle(screen, shape.color, p, int(shape.radius), 0)
-            if isinstance(shape, pymunk.Poly):
-                ps = shape.get_points()
-                ps = [to_pygame(p) for p in ps]
-                ps += [ps[0]]
-                pygame.draw.lines(screen, shape.color, False, ps, 1)
-    
 def main():
     ### PyGame init
     pygame.init()
@@ -148,6 +119,8 @@ def main():
                 running = False
             elif event.type == KEYDOWN and (event.key in [K_ESCAPE, K_q]):
                 running = False
+            elif event.type == KEYDOWN and event.key == K_p:
+                pygame.image.save(screen, "breakout.png")
                 
             elif event.type == KEYDOWN and event.key == K_LEFT:
                 player_body.velocity = (-600,0)
@@ -168,8 +141,8 @@ def main():
         screen.fill(THECOLORS["black"])
         
         ### Draw stuff
-        draw_space(screen, space)
-            
+        pymunk.pygame_util.draw_space(screen, space)
+           
         ### Update physics
         fps = 60
         dt = 1./fps

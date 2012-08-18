@@ -1,5 +1,4 @@
-desc = """
-Use to run examples using pymunk located one folder level up.
+"""Use to run examples using pymunk located one folder level up.
 Useful if you have the whole pymunk source tree and want to run the examples 
 in a quick and dirty way.
 
@@ -16,4 +15,4 @@ if len(sys.argv) > 1:
     
     execfile(name)
 else:
-    print desc
+    print __doc__
