@@ -159,15 +159,17 @@ def draw_segment(surface, segment):
     body = segment.body
     pv1 = body.position + segment.a.rotated(body.angle)
     pv2 = body.position + segment.b.rotated(body.angle)
+
     p1 = to_pygame(pv1, surface)
     p2 = to_pygame(pv2, surface)
+    
     if hasattr(segment, "color"):
         color = segment.color  
     elif segment.body.is_static:
         color = THECOLORS["lightgrey"]
     else:
         color = THECOLORS["blue"]
-    pygame.draw.lines(surface, color, False, [p1,p2], int(segment.radius))
+    pygame.draw.lines(surface, color, False, [p1,p2], max(int(segment.radius),1))
     
 def draw_constraint(surface, constraint):
     """Draw a pymunk.Constraint object
