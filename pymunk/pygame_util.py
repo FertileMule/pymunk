@@ -21,7 +21,7 @@
 # SOFTWARE.
 # ----------------------------------------------------------------------------
 
-"""Contains helper functions to draw pymunk objects using pygame.
+"""Contains helper functions to help using pygame with pymunk.
 
 Intended to help with debugging and prototyping, not for actual production use
 in a full application. The methods contained in this module is opinionated 
@@ -213,16 +213,22 @@ def draw_constraint(surface, constraint):
         p1 = to_pygame(pv1, surface)
         p2 = to_pygame(pv2, surface)
         pygame.draw.aalines(surface, THECOLORS["darkgray"], False, [p1,p2])    
-        
-def to_pygame(p, s):
+
+def get_mouse_pos(surface):
+    """Get position of the mouse pointer in pymunk coordinates."""
+    p = pygame.mouse.get_pos()
+    return from_pygame(p, surface)
+
+def to_pygame(p, surface):
     """Convenience method to convert pymunk coordinates to pygame surface 
     local coordinates
     """
-    return int(p.x), s.get_height()-int(p.y)
-def from_pygame(p, s):
+    return int(p[0]), surface.get_height()-int(p[1])
+    
+def from_pygame(p, surface):
     """Convenience method to convert pygame surface local coordinates to 
     pymunk coordinates    
     """
-    return to_pygame(p,s)
+    return to_pygame(p,surface)
 
             
