@@ -28,5 +28,5 @@ what happens even if it means that some code is repeated for each example.
 .. contents:: Example files
     :local:
     
-.. autoexample:: ../../../examples
+.. autoexample:: ../../examples
     :image_folder: _static/examples
