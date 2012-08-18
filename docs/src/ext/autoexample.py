@@ -37,7 +37,7 @@ def parse_example(path, filename, img_folder):
     
 def parse_examples(path, img_folder):
     lines = []
-    print "autoexample: documenting files in " + path
+    print("autoexample: documenting files in " + path)
     #print os.getcwd()
     for root, dirs, files in os.walk(path):
         for file in files:
@@ -47,7 +47,7 @@ def parse_examples(path, img_folder):
             _, ext = os.path.splitext(path)
             if ext != ".py":
                 continue
-            print "autoexample: documenting " + file
+            print("autoexample: documenting " + file)
             lines += parse_example(root, file, img_folder)
 
     return "\n".join(lines)
@@ -77,4 +77,3 @@ class AutoExampleDirective(Directive):
         
         self.state_machine.insert_input(include_lines, path)
         return []
-        #return [h1,l1,l2]#todolist('')]

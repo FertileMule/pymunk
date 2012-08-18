@@ -10,6 +10,7 @@ Contents:
     pymunk
     examples
     tutorials
+    advanced
 
 
 
