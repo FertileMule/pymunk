@@ -1,11 +1,15 @@
 Welcome to pymunk's documentation! 
 ==================================
 
-Contents:
+
+
+Contents
+--------
 
 .. toctree::
     :maxdepth: 4
 
+    readme
     installation
     pymunk
     examples
