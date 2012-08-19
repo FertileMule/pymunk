@@ -1,11 +1,7 @@
 Welcome to pymunk's documentation! 
 ==================================
 
-
-
-Contents
---------
-
+  
 .. toctree::
     :maxdepth: 4
 

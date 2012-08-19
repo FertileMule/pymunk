@@ -79,9 +79,6 @@
 <span class="target" id="module-pymunk"></span><p>pymunk is a easy-to-use pythonic 2d physics library that can be used whenever 
 you need 2d rigid body physics from Python.</p>
 <p>Homepage: <a class="reference external" href="http://code.google.com/p/pymunk/">http://code.google.com/p/pymunk/</a></p>
-<p>Forum: <a class="reference external" href="http://www.slembcke.net/forums/viewforum.php?f=6">http://www.slembcke.net/forums/viewforum.php?f=6</a></p>
-<p>Chipmunk documentation: 
-<a class="reference external" href="http://code.google.com/p/chipmunk-physics/wiki/Documentation">http://code.google.com/p/chipmunk-physics/wiki/Documentation</a></p>
 <dl class="data">
 <dt id="pymunk.inf">
 <tt class="descclassname">pymunk.</tt><tt class="descname">inf</tt><em class="property"> = 1e+100</em><a class="headerlink" href="#pymunk.inf" title="Permalink to this definition">¶</a></dt>
@@ -93,7 +90,7 @@ moment.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">In previous versions of pymunk you used inf to create static bodies. This
-has changed and you should isntead do it by invoking the body constructor
+has changed and you should instead do it by invoking the body constructor
 without any arguments.</p>
 </div>
 </dd></dl>
@@ -108,10 +105,12 @@ distribution (i.e. not in a checked-out copy from svn).</p>
 
 <dl class="data">
 <dt id="pymunk.chipmunk_version">
-<tt class="descclassname">pymunk.</tt><tt class="descname">chipmunk_version</tt><em class="property"> = '&lt;Mock object at 0x02C2DD30&gt;R'</em><a class="headerlink" href="#pymunk.chipmunk_version" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">pymunk.</tt><tt class="descname">chipmunk_version</tt><em class="property"> = '&lt;Mock object at 0x02D16D50&gt;R'</em><a class="headerlink" href="#pymunk.chipmunk_version" title="Permalink to this definition">¶</a></dt>
 <dd><p>The Chipmunk version compatible with this pymunk version.
 Other (newer) Chipmunk versions might also work if the new version does not
 contain any breaking API changes.</p>
+<p>This property does not show a valid value in the compiled documentation, only
+when you actually import pymunk and do pymunk.chipmunk_version</p>
 <p>The string is in the following format:
 &lt;cpVersionString&gt;R&lt;svn or github commit of chipmunk&gt;
 where cpVersionString is a version string set by Chipmunk and the svn version

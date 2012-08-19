@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1   Arrows and other pointy sticky things &mdash; pymunk 3.0.0 documentation</title>
+    <title>Arrows and other pointy sticky things &mdash; pymunk 3.0.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/default.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -28,7 +28,7 @@
     <link rel="shortcut icon" href="../_static/pymunk_favicon.ico"/>
     <link rel="top" title="pymunk 3.0.0 documentation" href="../index.html" />
     <link rel="up" title="Tutorials" href="../tutorials.html" />
-    <link rel="next" title="1   Slide and Pin Joint Demo Step by Step" href="SlideAndPinJoint.html" />
+    <link rel="next" title="Slide and Pin Joint Demo Step by Step" href="SlideAndPinJoint.html" />
     <link rel="prev" title="Tutorials" href="../tutorials.html" /> 
   </head>
   <body>
@@ -42,7 +42,7 @@
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="SlideAndPinJoint.html" title="1   Slide and Pin Joint Demo Step by Step"
+          <a href="SlideAndPinJoint.html" title="Slide and Pin Joint Demo Step by Step"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="../tutorials.html" title="Tutorials"
@@ -58,12 +58,17 @@
           <div class="body">
             
   <div class="section" id="arrows-and-other-pointy-sticky-things">
-<h1>1&nbsp;&nbsp;&nbsp;Arrows and other pointy sticky things<a class="headerlink" href="#arrows-and-other-pointy-sticky-things" title="Permalink to this headline">¶</a></h1>
+<h1>Arrows and other pointy sticky things<a class="headerlink" href="#arrows-and-other-pointy-sticky-things" title="Permalink to this headline">¶</a></h1>
+<div class="admonition attention">
+<p class="first admonition-title">Attention</p>
+<p class="last">This tutorial is work in progress. Take a look at the arrows.py example file
+in <a class="reference internal" href="../examples.html#id1"><em>Examples</em></a> for fully working code for the arrows.</p>
+</div>
 <p>This tutorial will explain one way to make arrows/sticky projectiles that can stick on the target.</p>
 <p>The tutorial is heavily inspired by the Box2d tutorial &#8220;Box2D C++ tutorials - Sticky projectiles&#8221; found
 here <a class="reference external" href="http://www.iforce2d.net/b2dtut/sticky-projectiles">http://www.iforce2d.net/b2dtut/sticky-projectiles</a> (but adjusted for python, pymunk and chipmunk).</p>
 <div class="section" id="before-we-start">
-<h2>1.1&nbsp;&nbsp;&nbsp;Before we start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
+<h2>Before we start<a class="headerlink" href="#before-we-start" title="Permalink to this headline">¶</a></h2>
 <p>For this tutorial you will need to know some pymunk basics. I recommend that you read the other tutorial(s)
 and try out easier examples first before you continue.</p>
 <p>Except for pymunk you will also need pygame to follow this tutorial. However, it should be no problem to
@@ -78,7 +83,7 @@ use another graphics and input library if you want, for example pyglet.</p>
 objects if they hit hard enough.</p>
 </div>
 <div class="section" id="basic-scene">
-<h2>1.2&nbsp;&nbsp;&nbsp;Basic scene<a class="headerlink" href="#basic-scene" title="Permalink to this headline">¶</a></h2>
+<h2>Basic scene<a class="headerlink" href="#basic-scene" title="Permalink to this headline">¶</a></h2>
 <p>Before we start with the arrow we need a scene to contain it and a &#8220;cannon&#8221; that can aim:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">sys</span>
 
@@ -165,16 +170,17 @@ objects if they hit hard enough.</p>
             </a></p>
 <h3><a href="../index.html">Table Of Contents</a></h3>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../readme.html">Readme</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pymunk.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="">1&nbsp;&nbsp;&nbsp;Arrows and other pointy sticky things</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#before-we-start">1.1&nbsp;&nbsp;&nbsp;Before we start</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#basic-scene">1.2&nbsp;&nbsp;&nbsp;Basic scene</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Arrows and other pointy sticky things</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#before-we-start">Before we start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#basic-scene">Basic scene</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="SlideAndPinJoint.html">1&nbsp;&nbsp;&nbsp;Slide and Pin Joint Demo Step by Step</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SlideAndPinJoint.html">Slide and Pin Joint Demo Step by Step</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../advanced.html">Advanced</a></li>
@@ -185,7 +191,7 @@ objects if they hit hard enough.</p>
                         title="previous chapter">Tutorials</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="SlideAndPinJoint.html"
-                        title="next chapter">1&nbsp;&nbsp;&nbsp;Slide and Pin Joint Demo Step by Step</a></p>
+                        title="next chapter">Slide and Pin Joint Demo Step by Step</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="../_sources/tutorials/Arrows.txt"
@@ -218,7 +224,7 @@ objects if they hit hard enough.</p>
           <a href="../py-modindex.html" title="Python Module Index"
              >modules</a> |</li>
         <li class="right" >
-          <a href="SlideAndPinJoint.html" title="1   Slide and Pin Joint Demo Step by Step"
+          <a href="SlideAndPinJoint.html" title="Slide and Pin Joint Demo Step by Step"
              >next</a> |</li>
         <li class="right" >
           <a href="../tutorials.html" title="Tutorials"

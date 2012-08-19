@@ -27,10 +27,6 @@ you need 2d rigid body physics from Python.
 
 Homepage: http://code.google.com/p/pymunk/
 
-Forum: http://www.slembcke.net/forums/viewforum.php?f=6
-
-Chipmunk documentation: 
-http://code.google.com/p/chipmunk-physics/wiki/Documentation
 """
 __version__ = "$Id$"
 __docformat__ = "reStructuredText"
@@ -61,6 +57,9 @@ chipmunk_version = "%sR%s" % (cp.cpVersionString.value.decode(), '')
 Other (newer) Chipmunk versions might also work if the new version does not 
 contain any breaking API changes.
 
+This property does not show a valid value in the compiled documentation, only 
+when you actually import pymunk and do pymunk.chipmunk_version
+
 The string is in the following format:
 <cpVersionString>R<svn or github commit of chipmunk>
 where cpVersionString is a version string set by Chipmunk and the svn version 
@@ -84,7 +83,7 @@ moment.
 
 .. note::
     In previous versions of pymunk you used inf to create static bodies. This
-    has changed and you should isntead do it by invoking the body constructor 
+    has changed and you should instead do it by invoking the body constructor 
     without any arguments.
 """
 

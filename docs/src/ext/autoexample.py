@@ -8,8 +8,8 @@ from docutils.nodes import fully_normalize_name
 def setup(app):
     app.add_directive('autoexample', AutoExampleDirective)
 
-def parse_example(path, filename, img_folder):
-    path = os.path.join(path, filename)
+def parse_example(basepath, filename, img_folder):
+    path = os.path.join(basepath, filename)
     with open(path) as f:
         content = f.read().strip()
     n = ast.parse(content)
@@ -20,9 +20,15 @@ def parse_example(path, filename, img_folder):
     # Header
     s = [filename, "".ljust(len(filename), '-')]
     
+    # Location 
+    folder = os.path.basename(basepath)
+    s.append("Location: *%s/%s*" % (folder, filename))
+    
     # Docstring
+    s.append("")
     s.append(docstring)
-        
+    s.append("")
+    
     # Screenshot
     img_name,_ = os.path.splitext(filename)
     if img_folder != None:

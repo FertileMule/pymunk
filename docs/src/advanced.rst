@@ -59,10 +59,10 @@ the benefits of ctypes
   required top performance than maybe rewrite the whole thing in c would be 
   better anyway? Or make a optimized binding to chipmunk.
 
-  For example, if you really need excellent performance then I would say 
-  write the drawing code in c as well, and have that interact with chipmunk 
-  directly. That way it can be made more performant than any wrapping 
-  solution as it would skip the whole layer.
+  For example, if you really need excellent performance then one possible 
+  optimization would be to write the drawing code in c as well, and have that 
+  interact with chipmunk directly. That way it can be made more performant 
+  than any generic wrapping solution as it would skip the whole layer.
 
 * The bottleneck in a full game/application is somewhere else than in the 
   physics wrapping in many cases. If your game has AI, logic and so on in 

@@ -6,17 +6,16 @@ This is a step by step tutorial explaining the demo demo_slide_and_pinjoint.py
 included in pymunk. It is probably a good idea to have the file near by if I 
 miss something in the tutorial or something is unclear.
 
-.. sectnum::
-
 Before we start
 ===================
 
 For this tutorial you will need:
 
 * Python (of course)
-* ctypes (included with Python 2.5 and later)
 * pygame (found at www.pygame.org)
-* pymunk (pygame is only needed for this tutorial and some of the included demos, it is not required to run just pymunk)
+* pymunk 
+
+(pygame is only needed for this tutorial and some of the included demos, it is not required to run just pymunk)
 
 Pymunk is built on top of the 2d physics library Chipmunk. Chipmunk itself is written in C meaning pymunk 
 need to call into the c code. The ctypes library helps with this, however if you are on a platform that 

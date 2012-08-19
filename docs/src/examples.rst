@@ -1,6 +1,7 @@
 Examples 
 ======== 
-
+.. _examples:
+ 
 Here you will find a list of the included examples. Each example have a short 
 description and a screenshot (if applicable).
 

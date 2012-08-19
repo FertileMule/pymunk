@@ -2,12 +2,14 @@
 Arrows and other pointy sticky things
 *************************************
 
+.. attention::
+    This tutorial is work in progress. Take a look at the arrows.py example file 
+    in :ref:`Examples <examples>` for fully working code for the arrows.
+
 This tutorial will explain one way to make arrows/sticky projectiles that can stick on the target. 
 
 The tutorial is heavily inspired by the Box2d tutorial "Box2D C++ tutorials - Sticky projectiles" found
 here http://www.iforce2d.net/b2dtut/sticky-projectiles (but adjusted for python, pymunk and chipmunk).
-
-.. sectnum::
 
 Before we start
 ===================
