@@ -53,7 +53,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 
 # Add any Sphinx extension module names here, as strings. They can be extensions
 # coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
-extensions = ['sphinx.ext.autodoc', 
+extensions = [#'sphinx.ext.autodoc', 
                 'sphinx.ext.viewcode', 
                 'sphinx.ext.autosummary',
                 'ext.autoexample']
@@ -177,6 +177,9 @@ html_favicon = "pymunk_favicon.ico"
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+
+html_style = "pymunk.css"
+
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
 # using the given strftime format.
 #html_last_updated_fmt = '%b %d, %Y'
@@ -186,7 +189,9 @@ html_static_path = ['_static']
 #html_use_smartypants = True
 
 # Custom sidebar templates, maps document names to template names.
-html_sidebars = {'**': ['globaltoc.html', 'relations.html', 'sourcelink.html', 'searchbox.html'],}
+html_sidebars = {'[rieta]*': ['globaltoc.html', 'relations.html', 'sourcelink.html', 'searchbox.html'],
+                 }
+                 #'pymunk*': ['globaltoc.html', 'classtoc.html', 'relations.html', 'sourcelink.html', 'searchbox.html']}
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.

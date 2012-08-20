@@ -10,7 +10,7 @@
     
     <title>Welcome to pymunk’s documentation! &mdash; pymunk 3.0.0 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pymunk.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -53,6 +53,59 @@
             
   <div class="section" id="welcome-to-pymunk-s-documentation">
 <h1>Welcome to pymunk&#8217;s documentation!<a class="headerlink" href="#welcome-to-pymunk-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>pymunk is a easy-to-use pythonic 2d physics library that can be used whenever
+you need 2d rigid body physics from Python. It is built on top of the very
+nice 2d physics library Chipmunk.</p>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>To get started quickly take a look in the <a class="reference internal" href="readme.html"><em>Readme</em></a>, it contains a
+summary of the most important things and is quick to read. When done its a
+good idea to take a look at the included <a class="reference internal" href="examples.html"><em>Examples</em></a>, read the
+<a class="reference internal" href="tutorials.html"><em>Tutorials</em></a> and take a look in the <a class="reference internal" href="pymunk.html"><em>API Reference</em></a>.</p>
+</div>
+<div class="section" id="the-pymunk-vision">
+<h2>The pymunk Vision<a class="headerlink" href="#the-pymunk-vision" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div>&#8220;<em>Make 2d physics easy to include in your game :)</em>&#8220;</div></blockquote>
+<p>It is (or is striving to be):</p>
+<ul class="simple">
+<li><strong>Easy to use</strong> - It should be easy to use, no complicated stuff should be
+needed to add physics to your game/program.</li>
+<li><strong>&#8220;Pythonic&#8221;</strong> - It should not be visible that a c-library (chipmunk) is in
+the bottom, it should feel like a python library (no strange naming, OO,
+no memory handling and more)</li>
+<li><strong>Simple to build &amp; install</strong> - You shouldnt need to have a zillion of
+libraries installed to make it install, or do a lot of command line trixs.</li>
+<li><strong>Multiplatform</strong> - Should work on both windows, *nix and OSX.</li>
+<li><strong>Non-intrusive</strong> - It should not put restrictions on how you structure
+your program and not force you to use a special game loop, it should be
+possible to use with other libraries like pygame and pyglet.</li>
+</ul>
+</div>
+<div class="section" id="contact-support">
+<h2>Contact &amp; Support<a class="headerlink" href="#contact-support" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt><strong>Stackoverflow</strong></dt>
+<dd>You can ask questions/browse old ones at stackoverflow, just look for
+the pymunk tag. <a class="reference external" href="http://stackoverflow.com/questions/tagged/pymunk">http://stackoverflow.com/questions/tagged/pymunk</a></dd>
+<dt><strong>Forum</strong></dt>
+<dd>Currently pymunk has no separate forum, but you can use the general
+Chipmunk forum at <a class="reference external" href="http://chipmunk-physics.net/forum/index.php">http://chipmunk-physics.net/forum/index.php</a> Many issues
+are the same, like how to create a rag doll or why a fast moving object
+pass through a wall. If you have a pymunk specific question you can mark
+your post with [pymunk] to make it stand out a bit.</dd>
+<dt><strong>Mail</strong></dt>
+<dd>You can email me directly: <a class="reference external" href="mailto:vb&#37;&#52;&#48;viblo&#46;se">vb<span>&#64;</span>viblo<span>&#46;</span>se</a></dd>
+<dt><strong>Issue Tracker</strong></dt>
+<dd>Please use the issue tracker at google code to report any issues you find:
+<a class="reference external" href="http://code.google.com/p/pymunk/">http://code.google.com/p/pymunk/</a></dd>
+</dl>
+<p>Regardless of the method you use I will try to answer your questions as soon
+as I see them. (And if you ask on on SO or the forum other people might help
+as well!)</p>
+</div>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="readme.html">Readme</a><ul>
@@ -104,11 +157,9 @@
 <li class="toctree-l2"><a class="reference internal" href="examples.html#py2exe-setup-basic-test-py">py2exe_setup__basic_test.py</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#py2exe-setup-breakout-py">py2exe_setup__breakout.py</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#pygame-util-demo-py">pygame_util_demo.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples.html#pyramid-bench-py">pyramid_bench.py</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#run-py">run.py</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#slide-and-pinjoint-py">slide_and_pinjoint.py</a></li>
 <li class="toctree-l2"><a class="reference internal" href="examples.html#using-sprites-py">using_sprites.py</a></li>
-<li class="toctree-l2"><a class="reference internal" href="examples.html#vec2d-bench-py">vec2d_bench.py</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials.html">Tutorials</a><ul>
@@ -141,12 +192,13 @@
 </div>
 </div>
 <div class="section" id="indices-and-tables">
-<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<h2>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><a class="reference internal" href="genindex.html"><em>Index</em></a></li>
 <li><a class="reference internal" href="py-modindex.html"><em>Module Index</em></a></li>
 <li><a class="reference internal" href="search.html"><em>Search Page</em></a></li>
 </ul>
+</div>
 </div>
 
 

@@ -10,7 +10,7 @@
     
     <title>Readme &mdash; pymunk 3.0.0 documentation</title>
     
-    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pymunk.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -85,9 +85,8 @@ using chipmunk 6.1.1 (source included)</p>
 </div>
 <div class="section" id="how-to-use">
 <h2>How to Use<a class="headerlink" href="#how-to-use" title="Permalink to this headline">¶</a></h2>
-<p>pymunk ships with a number of demos in the examples directory, and the
-API documentation. There is also a few tutorials on the googlecode page
-and in the (shared) forum.</p>
+<p>pymunk ships with a number of demos in the examples directory, and its
+complete documentation including API Reference.</p>
 <p>If chipmunk doesnt ship with a chipmunk binary your platform can understand
 (currently Windows and Linux 32bit and 64 bit are included) you will have to
 compile chipmunk before install. See section CHIPMUNK in this readme for
@@ -99,7 +98,7 @@ compile chipmunk before install. See section CHIPMUNK in this readme for
 (like /my_python_scripts/yourgame/pymunk). The chipmunk binary library
 is located in the pymunk folder.</p>
 <p>The easy way to get started is to check out the examples/ directory,
-and run &#8216;run.py python arrows.py&#8217; and so on, and see what it does :)</p>
+and run &#8216;run.py python arrows.py&#8217; and so on, and see what each one does :)</p>
 </div>
 <div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
@@ -126,8 +125,9 @@ and run &#8216;run.py python arrows.py&#8217; and so on, and see what it does :)
 <h2>Dependencies / Requirements<a class="headerlink" href="#dependencies-requirements" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>python (tested on cpython 2.6, 2.7 and 3.2. Also on pypy 1.9)</li>
-<li>ctypes (included in python 2.5)</li>
 <li>chipmunk (pymunk ships with a set of chipmunk libraries)</li>
+</ul>
+<ul class="simple">
 <li>pygame (optional, you need it to run most of the demos)</li>
 <li>pyglet (optional, you need it to run the moon buggy demo)</li>
 <li>sphinx (optional, you need it to build documentation)</li>
@@ -147,11 +147,6 @@ util.py and others). If the compile fail, please check the readme in
 chipmunk_src for generic instructions on how to compile with gcc,
 or download the relevant release from Chipmunk homepage and follow its
 instructions.</p>
-<p>The build_chipmunk command can take two arguments, -c &lt;compiler&gt; and -r. If
-you compile on windows you probably want to use GCC through mingw or cygwin
-to compile and not Visual Studio as the compile arguments are setup for GCC.
-If you dont want the debug prints compile with -r to have chipmunk compile
-without debug asserts and debug prints.</p>
 </div>
 </div>
 

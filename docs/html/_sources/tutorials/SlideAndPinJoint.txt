@@ -56,7 +56,7 @@ spaces
 The documentation for chipmunk can be found here: http://chipmunk-physics.net/release/ChipmunkLatest-Docs/ 
 It is a good idea to read it, so do it now :)
 
-The API documentation for pymunk 2.0.0 can be found here: http://pymunk.googlecode.com/svn/tags/pymunk-2.0.0/docs/api/index.html
+The API documentation for pymunk can be found here: :doc:`../pymunk`
 
 We are now ready to write some code::
 

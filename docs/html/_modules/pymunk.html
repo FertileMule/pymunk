@@ -10,7 +10,7 @@
     
     <title>pymunk &mdash; pymunk 3.0.0 documentation</title>
     
-    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pymunk.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -79,12 +79,8 @@ you need 2d rigid body physics from Python.
 
 Homepage: http://code.google.com/p/pymunk/
 
-Forum: http://www.slembcke.net/forums/viewforum.php?f=6
-
-Chipmunk documentation: 
-http://code.google.com/p/chipmunk-physics/wiki/Documentation
 """
-__version__ = "$Id: __init__.py 397 2012-08-16 22:32:33Z vb@viblo.se $"
+__version__ = "$Id: __init__.py 411 2012-08-19 00:04:38Z vb@viblo.se $"
 __docformat__ = "reStructuredText"
 
 __all__ = ["inf", "version", "chipmunk_version"
@@ -113,6 +109,9 @@ chipmunk_version = "%sR%s" % (cp.cpVersionString.value.decode(), '')
 Other (newer) Chipmunk versions might also work if the new version does not 
 contain any breaking API changes.
 
+This property does not show a valid value in the compiled documentation, only 
+when you actually import pymunk and do pymunk.chipmunk_version
+
 The string is in the following format:
 &lt;cpVersionString&gt;R&lt;svn or github commit of chipmunk&gt;
 where cpVersionString is a version string set by Chipmunk and the svn version 
@@ -136,7 +135,7 @@ moment.
 
 .. note::
     In previous versions of pymunk you used inf to create static bodies. This
-    has changed and you should isntead do it by invoking the body constructor 
+    has changed and you should instead do it by invoking the body constructor 
     without any arguments.
 """
 
@@ -1599,16 +1598,6 @@ moment.
             <p class="logo"><a href="../index.html">
               <img class="logo" src="../_static/pymunk_logo_sphinx.png" alt="Logo"/>
             </a></p>
-<h3><a href="../index.html">Table Of Contents</a></h3>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../readme.html">Readme</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pymunk.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../tutorials.html">Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced.html">Advanced</a></li>
-</ul>
-
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../search.html" method="get">

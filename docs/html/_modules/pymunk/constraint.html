@@ -10,7 +10,7 @@
     
     <title>pymunk.constraint &mdash; pymunk 3.0.0 documentation</title>
     
-    <link rel="stylesheet" href="../../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pymunk.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     
     <script type="text/javascript">
@@ -75,11 +75,22 @@
 # ----------------------------------------------------------------------------
 
 """A constraint is something that describes how two bodies interact with 
-each other. (how they constraint each other). Constraints can be simple 
+each other. (how they constrain each other). Constraints can be simple 
 joints that allow bodies to pivot around each other like the bones in your 
 body, or they can be more abstract like the gear joint or motors. 
+
+Chipmunk has a good overview of the different joints on youtube which works 
+fine to showcase them in pymunk as well. 
+http://www.youtube.com/watch?v=ZgJJZTS0aMM
+
+.. raw:: html
+    
+    &lt;iframe width="420" height="315" style="display: block; margin: 0 auto;"
+    src="http://www.youtube.com/embed/ZgJJZTS0aMM" frameborder="0" 
+    allowfullscreen&gt;&lt;/iframe&gt;
+    
 """
-__version__ = "$Id: constraint.py 397 2012-08-16 22:32:33Z vb@viblo.se $"
+__version__ = "$Id: constraint.py 411 2012-08-19 00:04:38Z vb@viblo.se $"
 __docformat__ = "reStructuredText"
 
 import ctypes as ct
@@ -89,12 +100,8 @@ import _chipmunk_ffi as cpffi
 <div class="viewcode-block" id="Constraint"><a class="viewcode-back" href="../../pymunk.constraint.html#pymunk.constraint.Constraint">[docs]</a>class Constraint(object):
     """Base class of all constraints. 
     
-    You usually don't want to create instances of this class directly.
-    
-    A constraint is something that describes how two bodies interact with 
-    each other. (how they constraint each other). Constraints can be simple 
-    joints that allow bodies to pivot around each other like the bones in your 
-    body, or they can be more abstract like the gear joint or motors. 
+    You usually don't want to create instances of this class directly, but 
+    instead use one of the specific constraints such as the PinJoint.
     """
     def __init__(self, constraint=None):
         self._constraint = constraint
@@ -519,16 +526,6 @@ import _chipmunk_ffi as cpffi
             <p class="logo"><a href="../../index.html">
               <img class="logo" src="../../_static/pymunk_logo_sphinx.png" alt="Logo"/>
             </a></p>
-<h3><a href="../../index.html">Table Of Contents</a></h3>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../readme.html">Readme</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../pymunk.html">API Reference</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorials.html">Tutorials</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../advanced.html">Advanced</a></li>
-</ul>
-
 <div id="searchbox" style="display: none">
   <h3>Quick search</h3>
     <form class="search" action="../../search.html" method="get">

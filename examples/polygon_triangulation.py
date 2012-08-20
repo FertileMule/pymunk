@@ -48,7 +48,7 @@ while not(quit):
         if event.type == QUIT:
             quit = True
         elif event.type == KEYDOWN and event.key == K_p:
-            pygame.image.save(screen, "polygon_triangulator.png")
+            pygame.image.save(screen, "polygon_triangulation.png")
         elif event.type == MOUSEBUTTONDOWN:
             clicked_points += [event.pos]
             poly = PolyPoints(clicked_points)

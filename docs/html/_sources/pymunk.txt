@@ -1,8 +1,9 @@
+*************
 API Reference
-====================
+*************
 
-:mod:`pymunk` Package
----------------------
+:mod:`pymunk` Package 
+=====================
 
 .. rubric:: Submodules
 
@@ -15,6 +16,7 @@ API Reference
     pymunk.pygame_util
     pymunkoptions
 
+   
 .. rubric:: pymunk
 
 .. automodule:: pymunk

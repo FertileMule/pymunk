@@ -63,9 +63,11 @@ class PyramidDemo:
                 self.running = False
             elif event.type == KEYDOWN and event.key == K_ESCAPE:
                 self.running = False
+            elif event.type == KEYDOWN and event.key == K_p:
+                pygame.image.save(self.screen, "box2d_pyramid.png")
             elif event.type == KEYDOWN and event.key == K_d:
                 self.drawing = not self.drawing
-        
+            
         steps = 3
         dt = 1.0/120.0/steps            
         for x in range(steps):

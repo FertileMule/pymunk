@@ -23,9 +23,8 @@ using chipmunk 6.1.1 (source included)
 How to Use
 ----------
 
-pymunk ships with a number of demos in the examples directory, and the 
-API documentation. There is also a few tutorials on the googlecode page 
-and in the (shared) forum. 
+pymunk ships with a number of demos in the examples directory, and its  
+complete documentation including API Reference.  
 
 If chipmunk doesnt ship with a chipmunk binary your platform can understand
 (currently Windows and Linux 32bit and 64 bit are included) you will have to 
@@ -41,7 +40,7 @@ or simply put the pymunk folder where your program/game can find it.
 is located in the pymunk folder.
 
 The easy way to get started is to check out the examples/ directory,
-and run 'run.py python arrows.py' and so on, and see what it does :)
+and run 'run.py python arrows.py' and so on, and see what each one does :)
 
 
 Example
@@ -70,9 +69,8 @@ For more detailed and advanced examples, take a look at the included demos
 Dependencies / Requirements
 ---------------------------
 
-* python (tested on cpython 2.6, 2.7 and 3.2. Also on pypy 1.9)
-* ctypes (included in python 2.5)
-* chipmunk (pymunk ships with a set of chipmunk libraries)
+- python (tested on cpython 2.6, 2.7 and 3.2. Also on pypy 1.9)
+- chipmunk (pymunk ships with a set of chipmunk libraries)
 
 * pygame (optional, you need it to run most of the demos)
 * pyglet (optional, you need it to run the moon buggy demo)
@@ -95,9 +93,3 @@ util.py and others). If the compile fail, please check the readme in
 chipmunk_src for generic instructions on how to compile with gcc, 
 or download the relevant release from Chipmunk homepage and follow its
 instructions.
-
-The build_chipmunk command can take two arguments, -c <compiler> and -r. If 
-you compile on windows you probably want to use GCC through mingw or cygwin 
-to compile and not Visual Studio as the compile arguments are setup for GCC.
-If you dont want the debug prints compile with -r to have chipmunk compile 
-without debug asserts and debug prints.
